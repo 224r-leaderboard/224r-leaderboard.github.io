@@ -12,8 +12,8 @@ from fastapi.responses import JSONResponse, HTMLResponse
 from pydantic import BaseModel
 from typing import List, Dict, Optional, Union
 from datetime import datetime
-from transformers import AutoTokenizer, AutoModelForCausalLM
 from datasets import load_dataset
+from vllm import LLM, SamplingParams
 
 # Initialize FastAPI app
 app = FastAPI(title="Model Evaluation Leaderboard")
@@ -49,23 +49,23 @@ if not os.path.exists(LEADERBOARD_FILE):
         }, f)
 
 # Load base model (Qwen 2.5 0.5B non-instruct)
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-0.5B")
-model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-0.5B")
+def load_base_model():
+    tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-0.5B")
+    model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-0.5B")
+    return tokenizer, model
 
 # Models for validation
 class SubmissionRequest(BaseModel):
-    student_id: str
+    group_name: str
     task_type: str  # "instruction_following" or "math_reasoning"
-    submission_code: str
-    description: str
-    hyperparameters: Dict[str, Union[str, int, float, bool, None]]
+    model_huggingface_path: str
 
 class LeaderboardEntry(BaseModel):
     rank: int
-    student_id: str
+    group_name: str
     score: float
     submission_time: str
-    description: str
+    model_huggingface_path: str
 
 # Authentication function
 def verify_credentials(credentials: HTTPBasicCredentials = Depends(security)):
@@ -87,64 +87,58 @@ def verify_credentials(credentials: HTTPBasicCredentials = Depends(security)):
     return credentials.username
 
 # Function to evaluate a submission
-def evaluate_submission(submission_path, task_type):
-    # Load the submission code
-    with open(submission_path, "r") as f:
-        submission_code = f.read()
-    
+def evaluate_submission(model_path, task_type):
     # Load the evaluation dataset
     eval_data = load_dataset("json", data_files=EVAL_SETS[task_type], split="train")
     
-    # Load the base model
-    tokenizer, base_model = load_base_model()
-    
-    # Execute the submission code in a safe environment
-    # This is a simplified example - in practice, you would need more robust sandboxing
+    # Load the model from Hugging Face using vllm
     try:
-        # Create a namespace for execution
-        namespace = {
-            "base_model": base_model,
-            "tokenizer": tokenizer,
-            "torch": torch,
-            "np": np
-        }
+        # Configure vllm with appropriate settings
+        llm = LLM(
+            model=model_path,
+            tensor_parallel_size=1,  # Set based on available GPUs
+            gpu_memory_utilization=0.8,
+            trust_remote_code=True,
+            dtype="half"  # Using half precision for efficiency
+        )
         
-        # Execute the submission code
-        exec(submission_code, namespace)
+        # Define sampling parameters
+        sampling_params = SamplingParams(
+            temperature=0.7,
+            top_p=0.9,
+            max_tokens=512
+        )
         
-        # The code should define a 'run_model' function that takes an input and returns a prediction
-        if "run_model" not in namespace:
-            return {"error": "Submission does not define a 'run_model' function"}
-        
-        run_model = namespace["run_model"]
-        
-        # Evaluate on each example
+        # Process in batches for better efficiency
+        batch_size = 8  # Adjust based on available memory
         scores = []
-        for example in eval_data:
-            try:
-                if task_type == "instruction_following":
-                    # For instruction following, evaluate based on Ultrafeedback metrics
-                    input_text = example["instruction"]
-                    prediction = run_model(input_text)
-                    reference = example["reference"]
-                    
-                    # Calculate scores based on helpfulness, honesty, harmlessness criteria
-                    # This is simplified - in practice, you would use a more sophisticated evaluation
-                    score = calculate_instruction_score(prediction, reference)
-                    
-                elif task_type == "math_reasoning":
-                    # For math reasoning, evaluate based on Countdown metrics
-                    input_text = example["problem"]
-                    prediction = run_model(input_text)
-                    reference = example["solution"]
-                    
-                    # Calculate scores based on correctness and reasoning
-                    score = calculate_math_score(prediction, reference)
-                
-                scores.append(score)
-            except Exception as e:
-                return {"error": f"Error evaluating example: {str(e)}"}
         
+        for i in range(0, len(eval_data), batch_size):
+            batch = eval_data[i:i+batch_size]
+            
+            # Prepare batch inputs
+            if task_type == "instruction_following":
+                batch_inputs = [example["instruction"] for example in batch]
+                batch_references = [example["reference"] for example in batch]
+            else:  # math_reasoning
+                batch_inputs = [example["problem"] for example in batch]
+                batch_references = [example["solution"] for example in batch]
+            
+            # Generate outputs for the batch
+            batch_outputs = llm.generate(batch_inputs, sampling_params)
+            batch_predictions = [output.outputs[0].text for output in batch_outputs]
+            
+            # Calculate scores for the batch
+            batch_scores = []
+            for j, (prediction, reference) in enumerate(zip(batch_predictions, batch_references)):
+                if task_type == "instruction_following":
+                    score = calculate_instruction_score(prediction, reference)
+                else:  # math_reasoning
+                    score = calculate_math_score(prediction, reference)
+                batch_scores.append(score)
+            
+            scores.extend(batch_scores)
+            
         # Calculate final score
         if not scores:
             return {"error": "No valid scores were calculated"}
@@ -168,16 +162,16 @@ def calculate_math_score(prediction, reference):
     return 1.0 if prediction.strip().lower() == reference.strip().lower() else 0.0
 
 # Function to update the leaderboard
-def update_leaderboard(student_id, task_type, score, description):
+def update_leaderboard(group_name, task_type, score, model_huggingface_path):
     with open(LEADERBOARD_FILE, "r") as f:
         leaderboard = json.load(f)
     
     # Add new submission
     submission = {
-        "student_id": student_id,
+        "group_name": group_name,
         "score": score,
         "submission_time": datetime.now().isoformat(),
-        "description": description
+        "model_huggingface_path": model_huggingface_path
     }
     
     leaderboard[task_type].append(submission)
@@ -210,21 +204,15 @@ async def submit_model(
     
     # Generate a unique ID for this submission
     timestamp = int(time.time())
-    submission_id = f"{submission.student_id}_{submission.task_type}_{timestamp}"
-    
-    # Save submission to disk
-    submission_path = os.path.join(SUBMISSIONS_DIR, f"{submission_id}.py")
-    with open(submission_path, "w") as f:
-        f.write(submission.submission_code)
+    submission_id = f"{submission.group_name.replace(' ', '_')}_{submission.task_type}_{timestamp}"
     
     # Start evaluation in background
     background_tasks.add_task(
         process_submission,
-        submission_path,
+        submission_id,
         submission.task_type,
-        submission.student_id,
-        submission.description,
-        submission.hyperparameters
+        submission.group_name,
+        submission.model_huggingface_path
     )
     
     return {
@@ -234,28 +222,27 @@ async def submit_model(
     }
 
 # Function to process submission in background
-def process_submission(submission_path, task_type, student_id, description, hyperparameters):
+def process_submission(submission_id, task_type, group_name, model_huggingface_path):
     # Evaluate the submission
-    result = evaluate_submission(submission_path, task_type)
+    result = evaluate_submission(model_huggingface_path, task_type)
     
     if "error" in result:
         # Log the error
-        with open(f"{submission_path}.error", "w") as f:
+        with open(f"{SUBMISSIONS_DIR}/{submission_id}.error", "w") as f:
             f.write(result["error"])
         return
     
     # Update the leaderboard
-    update_leaderboard(student_id, task_type, result["score"], description)
+    update_leaderboard(group_name, task_type, result["score"], model_huggingface_path)
     
     # Save metadata
-    with open(f"{submission_path}.meta", "w") as f:
+    with open(f"{SUBMISSIONS_DIR}/{submission_id}.meta", "w") as f:
         json.dump({
-            "student_id": student_id,
+            "group_name": group_name,
             "task_type": task_type,
             "score": result["score"],
             "submission_time": datetime.now().isoformat(),
-            "description": description,
-            "hyperparameters": hyperparameters
+            "model_huggingface_path": model_huggingface_path
         }, f, indent=2)
 
 @app.get("/leaderboard/{task_type}")
@@ -324,29 +311,24 @@ async def get_thresholds():
 async def get_guidelines():
     # Return submission guidelines
     return HTMLResponse("""
-    <h1>Leaderboard Submission Guidelines</h1>
     <h2>Model Requirements</h2>
     <ul>
         <li>All submissions must use the Qwen 2.5 0.5B (non-instruct) model as the base model</li>
-        <li>Your code must define a function named 'run_model' that takes an input string and returns the model's prediction</li>
-        <li>You may modify this base model through extensions, prompt engineering, or other techniques</li>
     </ul>
     <h2>Evaluation Criteria</h2>
     <h3>Instruction Following</h3>
     <p>Based on the Ultrafeedback benchmark, evaluating:</p>
     <ul>
         <li>Helpfulness: How well the model follows the given instruction</li>
-        <li>Honesty: The factual accuracy of the model's response</li>
         <li>Harmlessness: Ensuring the model doesn't produce harmful content</li>
     </ul>
     <h3>Math Reasoning</h3>
     <p>Based on the Countdown benchmark, evaluating:</p>
     <ul>
         <li>Correctness: Whether the final answer matches the reference</li>
-        <li>Reasoning: The quality of the step-by-step reasoning</li>
     </ul>
     <h2>Submission Limits</h2>
-    <p>Each student may submit up to 5 times per day and 20 times in total for each task type.</p>
+    <p>Each student may submit up to 5 times in total for each task type.</p>
     """)
 
 # Start the server
