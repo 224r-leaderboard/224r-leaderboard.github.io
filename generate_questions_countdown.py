@@ -7,7 +7,7 @@ from countdown import evaluate_equation, compute_score
 
 min_number = 0
 max_number = 99
-number_range = range(3, 6)  # Will generate 3-4 numbers
+number_range = range(3, 5)  # Will generate 3-4 numbers
 operations = ['+', '-', '*', '/']
 num_problems = 200
 
