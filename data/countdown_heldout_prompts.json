@@ -1,200 +1,200 @@
-{"num":[96,13,20],"expression":"96 + 13 - 20","target":89}
-{"num":[7,66,34],"expression":"7 + 66 - 34","target":39}
-{"num":[82,10,22,39],"expression":"82 + 10 + 22 - 39","target":75}
-{"num":[63,1,50],"expression":"63 - 1 * 50","target":13}
-{"num":[54,65,83],"expression":"54 - 65 + 83","target":72}
-{"num":[39,13,66,74],"expression":"39 + 13 - 66 + 74","target":60}
-{"num":[20,62,63,40],"expression":"20 - 62 + 63 + 40","target":61}
-{"num":[14,85,31],"expression":"14 + 85 - 31","target":68}
-{"num":[23,50,51],"expression":"23 + 50 - 51","target":22}
-{"num":[83,2,59],"expression":"83 + 2 - 59","target":26}
-{"num":[59,29,75],"expression":"59 + 29 - 75","target":13}
-{"num":[64,48,24],"expression":"64 - 48 \/ 24","target":62}
-{"num":[46,9,39],"expression":"46 - 9 + 39","target":76}
-{"num":[65,9,46],"expression":"65 - 9 - 46","target":10}
-{"num":[66,69,7],"expression":"66 - 69 + 7","target":4}
-{"num":[57,21,74,84],"expression":"57 - 21 - 74 + 84","target":46}
-{"num":[39,33,13],"expression":"39 - 33 + 13","target":19}
-{"num":[15,3,1],"expression":"15 - 3 - 1","target":11}
-{"num":[71,63,71],"expression":"71 - 63 + 71","target":79}
-{"num":[92,14,4],"expression":"92 - 14 - 4","target":74}
-{"num":[9,99,27],"expression":"9 * 99 \/ 27","target":33}
-{"num":[95,99,27],"expression":"95 - 99 + 27","target":23}
-{"num":[17,84,17],"expression":"17 * 84 \/ 17","target":84}
-{"num":[21,28,72],"expression":"21 - 28 + 72","target":65}
-{"num":[4,99,99],"expression":"4 - 99 \/ 99","target":3}
-{"num":[62,18,18,16],"expression":"62 + 18 \/ 18 - 16","target":47}
-{"num":[52,33,75],"expression":"52 - 33 + 75","target":94}
-{"num":[36,83,19,97],"expression":"36 - 83 - 19 + 97","target":31}
-{"num":[99,0,99,31],"expression":"99 - 0 \/ 99 * 31","target":99}
-{"num":[11,0,84],"expression":"11 + 0 \/ 84","target":11}
-{"num":[5,25,22,49],"expression":"5 * 25 - 22 - 49","target":54}
-{"num":[54,14,31],"expression":"54 - 14 - 31","target":9}
-{"num":[2,39,42],"expression":"2 - 39 + 42","target":5}
-{"num":[48,83,46],"expression":"48 + 83 - 46","target":85}
-{"num":[74,0,72],"expression":"74 * 0 * 72","target":0}
-{"num":[96,2,57],"expression":"96 + 2 - 57","target":41}
-{"num":[2,49,32,47],"expression":"2 + 49 - 32 + 47","target":66}
-{"num":[55,54,66],"expression":"55 - 54 + 66","target":67}
-{"num":[34,34,35],"expression":"34 \/ 34 * 35","target":35}
-{"num":[68,87,64],"expression":"68 - 87 + 64","target":45}
-{"num":[97,3,68],"expression":"97 + 3 - 68","target":32}
-{"num":[21,3,15],"expression":"21 - 3 - 15","target":3}
-{"num":[0,30,65,78],"expression":"0 + 30 - 65 + 78","target":43}
-{"num":[60,78,76],"expression":"60 - 78 + 76","target":58}
-{"num":[40,58,33],"expression":"40 + 58 - 33","target":65}
-{"num":[57,35,28],"expression":"57 - 35 + 28","target":50}
-{"num":[9,21,4,66],"expression":"9 - 21 - 4 + 66","target":50}
-{"num":[4,2,28,52],"expression":"4 * 2 - 28 + 52","target":32}
-{"num":[93,0,39],"expression":"93 - 0 - 39","target":54}
-{"num":[72,8,13,96],"expression":"72 - 8 * 13 + 96","target":64}
-{"num":[80,42,31],"expression":"80 - 42 + 31","target":69}
-{"num":[81,83,74,72],"expression":"81 + 83 - 74 - 72","target":18}
-{"num":[14,20,31],"expression":"14 + 20 - 31","target":3}
-{"num":[50,6,44],"expression":"50 + 6 - 44","target":12}
-{"num":[82,32,24],"expression":"82 + 32 - 24","target":90}
-{"num":[55,44,46],"expression":"55 - 44 + 46","target":57}
-{"num":[17,28,36],"expression":"17 - 28 + 36","target":25}
-{"num":[21,19,19],"expression":"21 - 19 + 19","target":21}
-{"num":[99,64,82,89],"expression":"99 - 64 + 82 - 89","target":28}
-{"num":[12,77,53,36],"expression":"12 + 77 - 53 + 36","target":72}
-{"num":[96,30,38],"expression":"96 + 30 - 38","target":88}
-{"num":[43,27,32],"expression":"43 - 27 + 32","target":48}
-{"num":[44,39,61],"expression":"44 - 39 + 61","target":66}
-{"num":[83,33,43],"expression":"83 - 33 - 43","target":7}
-{"num":[58,2,12],"expression":"58 \/ 2 + 12","target":41}
-{"num":[40,18,91,38],"expression":"40 - 18 + 91 - 38","target":75}
-{"num":[13,6,66],"expression":"13 + 6 + 66","target":85}
-{"num":[98,21,30,67],"expression":"98 + 21 + 30 - 67","target":82}
-{"num":[44,89,24,95],"expression":"44 + 89 - 24 - 95","target":14}
-{"num":[33,71,89],"expression":"33 + 71 - 89","target":15}
-{"num":[82,3,56,14],"expression":"82 + 3 - 56 \/ 14","target":81}
-{"num":[18,22,9],"expression":"18 + 22 + 9","target":49}
-{"num":[21,10,7],"expression":"21 + 10 + 7","target":38}
-{"num":[25,37,34],"expression":"25 + 37 - 34","target":28}
-{"num":[29,41,41],"expression":"29 \/ 41 * 41","target":29}
-{"num":[96,3,62],"expression":"96 + 3 - 62","target":37}
-{"num":[0,83,28,4],"expression":"0 * 83 * 28 * 4","target":0}
-{"num":[68,13,68,55],"expression":"68 + 13 + 68 - 55","target":94}
-{"num":[89,78,2,10],"expression":"89 - 78 + 2 + 10","target":23}
-{"num":[96,16,87],"expression":"96 + 16 - 87","target":25}
-{"num":[57,57,24],"expression":"57 \/ 57 * 24","target":24}
-{"num":[87,99,95],"expression":"87 - 99 + 95","target":83}
-{"num":[84,72,36],"expression":"84 \/ 72 * 36","target":42}
-{"num":[0,12,35],"expression":"0 + 12 + 35","target":47}
-{"num":[73,41,89,19],"expression":"73 + 41 - 89 - 19","target":6}
-{"num":[72,8,72],"expression":"72 * 8 \/ 72","target":8}
-{"num":[52,70,35],"expression":"52 + 70 \/ 35","target":54}
-{"num":[50,59,95],"expression":"50 + 59 - 95","target":14}
-{"num":[75,85,27,39],"expression":"75 + 85 - 27 - 39","target":94}
-{"num":[37,62,15,59],"expression":"37 + 62 - 15 - 59","target":25}
-{"num":[72,55,67,86],"expression":"72 - 55 - 67 + 86","target":36}
-{"num":[60,56,4],"expression":"60 + 56 \/ 4","target":74}
-{"num":[0,55,56],"expression":"0 \/ 55 + 56","target":56}
-{"num":[2,7,51],"expression":"2 * 7 + 51","target":65}
-{"num":[65,34,82],"expression":"65 + 34 - 82","target":17}
-{"num":[30,23,12],"expression":"30 - 23 + 12","target":19}
-{"num":[4,40,79],"expression":"4 - 40 + 79","target":43}
-{"num":[87,95,17],"expression":"87 - 95 + 17","target":9}
-{"num":[47,94,66],"expression":"47 \/ 94 * 66","target":33}
-{"num":[14,63,78],"expression":"14 - 63 + 78","target":29}
-{"num":[34,52,74,0],"expression":"34 + 52 \/ 74 * 0","target":34}
-{"num":[1,13,92],"expression":"1 - 13 + 92","target":80}
-{"num":[23,3,58],"expression":"23 + 3 + 58","target":84}
-{"num":[40,16,23],"expression":"40 - 16 + 23","target":47}
-{"num":[87,9,22],"expression":"87 - 9 - 22","target":56}
-{"num":[12,56,22],"expression":"12 + 56 + 22","target":90}
-{"num":[14,16,14],"expression":"14 + 16 + 14","target":44}
-{"num":[0,67,37,44],"expression":"0 * 67 \/ 37 \/ 44","target":0}
-{"num":[26,14,52],"expression":"26 - 14 + 52","target":64}
-{"num":[56,40,34,32],"expression":"56 - 40 - 34 + 32","target":14}
-{"num":[65,86,57],"expression":"65 + 86 - 57","target":94}
-{"num":[3,38,35],"expression":"3 - 38 + 35","target":0}
-{"num":[75,44,22],"expression":"75 - 44 - 22","target":9}
-{"num":[92,37,41],"expression":"92 + 37 - 41","target":88}
-{"num":[31,40,20],"expression":"31 + 40 - 20","target":51}
-{"num":[26,20,54],"expression":"26 - 20 + 54","target":60}
-{"num":[60,74,27,3],"expression":"60 - 74 + 27 + 3","target":16}
-{"num":[62,77,46],"expression":"62 + 77 - 46","target":93}
-{"num":[16,16,14,13],"expression":"16 - 16 + 14 + 13","target":27}
-{"num":[65,85,85],"expression":"65 + 85 \/ 85","target":66}
-{"num":[79,89,78],"expression":"79 - 89 + 78","target":68}
-{"num":[91,50,0],"expression":"91 - 50 + 0","target":41}
-{"num":[6,6,85],"expression":"6 \/ 6 * 85","target":85}
-{"num":[80,0,91],"expression":"80 * 0 \/ 91","target":0}
-{"num":[25,0,67],"expression":"25 - 0 * 67","target":25}
-{"num":[91,19,64],"expression":"91 + 19 - 64","target":46}
-{"num":[57,53,55],"expression":"57 + 53 - 55","target":55}
-{"num":[83,21,21],"expression":"83 * 21 \/ 21","target":83}
-{"num":[45,32,38],"expression":"45 + 32 - 38","target":39}
-{"num":[96,96,49],"expression":"96 \/ 96 + 49","target":50}
-{"num":[15,10,11],"expression":"15 + 10 - 11","target":14}
-{"num":[70,31,40],"expression":"70 + 31 - 40","target":61}
-{"num":[86,89,3],"expression":"86 - 89 + 3","target":0}
-{"num":[37,37,17,19],"expression":"37 + 37 - 17 + 19","target":76}
-{"num":[12,29,27],"expression":"12 + 29 - 27","target":14}
-{"num":[13,73,79],"expression":"13 - 73 + 79","target":19}
-{"num":[42,17,2,5],"expression":"42 - 17 - 2 - 5","target":18}
-{"num":[32,52,52,29],"expression":"32 * 52 \/ 52 + 29","target":61}
-{"num":[76,26,41,2],"expression":"76 + 26 - 41 * 2","target":20}
-{"num":[90,0,11],"expression":"90 * 0 \/ 11","target":0}
-{"num":[88,74,4],"expression":"88 - 74 + 4","target":18}
-{"num":[9,13,4,18],"expression":"9 + 13 + 4 - 18","target":8}
-{"num":[84,99,95,14],"expression":"84 + 99 - 95 - 14","target":74}
-{"num":[4,14,30],"expression":"4 - 14 + 30","target":20}
-{"num":[31,40,66,59],"expression":"31 + 40 + 66 - 59","target":78}
-{"num":[30,10,10],"expression":"30 - 10 - 10","target":10}
-{"num":[69,6,61,29],"expression":"69 + 6 - 61 + 29","target":43}
-{"num":[86,36,8,15],"expression":"86 - 36 - 8 - 15","target":27}
-{"num":[25,45,44],"expression":"25 + 45 - 44","target":26}
-{"num":[95,86,20],"expression":"95 - 86 + 20","target":29}
-{"num":[33,74,28],"expression":"33 + 74 - 28","target":79}
-{"num":[28,86,66],"expression":"28 + 86 - 66","target":48}
-{"num":[31,0,97,79],"expression":"31 * 0 * 97 + 79","target":79}
-{"num":[91,13,20,96],"expression":"91 + 13 + 20 - 96","target":28}
-{"num":[22,77,25],"expression":"22 + 77 - 25","target":74}
-{"num":[70,16,26,14],"expression":"70 + 16 - 26 - 14","target":46}
-{"num":[35,0,25,64],"expression":"35 + 0 * 25 * 64","target":35}
-{"num":[37,63,85],"expression":"37 - 63 + 85","target":59}
-{"num":[0,19,7,19],"expression":"0 + 19 - 7 + 19","target":31}
-{"num":[40,0,74,69],"expression":"40 * 0 \/ 74 * 69","target":0}
-{"num":[67,44,1],"expression":"67 - 44 + 1","target":24}
-{"num":[69,61,1,34],"expression":"69 - 61 + 1 + 34","target":43}
-{"num":[73,43,12],"expression":"73 - 43 - 12","target":18}
-{"num":[78,2,11],"expression":"78 + 2 - 11","target":69}
-{"num":[39,12,25],"expression":"39 - 12 + 25","target":52}
-{"num":[11,0,71],"expression":"11 + 0 \/ 71","target":11}
-{"num":[37,15,79,62],"expression":"37 + 15 - 79 + 62","target":35}
-{"num":[61,37,70],"expression":"61 + 37 - 70","target":28}
-{"num":[73,72,45,94],"expression":"73 - 72 - 45 + 94","target":50}
-{"num":[41,11,36],"expression":"41 + 11 + 36","target":88}
-{"num":[91,8,1],"expression":"91 + 8 * 1","target":99}
-{"num":[99,72,67],"expression":"99 - 72 + 67","target":94}
-{"num":[5,1,32,70],"expression":"5 * 1 - 32 + 70","target":43}
-{"num":[86,31,30,6],"expression":"86 - 31 - 30 \/ 6","target":50}
-{"num":[75,13,2],"expression":"75 + 13 + 2","target":90}
-{"num":[22,8,16],"expression":"22 - 8 + 16","target":30}
-{"num":[51,64,95],"expression":"51 - 64 + 95","target":82}
-{"num":[29,34,64,4],"expression":"29 - 34 + 64 \/ 4","target":11}
-{"num":[30,60,8,62],"expression":"30 + 60 - 8 - 62","target":20}
-{"num":[51,2,94],"expression":"51 * 2 - 94","target":8}
-{"num":[3,40,24,71],"expression":"3 * 40 + 24 - 71","target":73}
-{"num":[88,2,29],"expression":"88 + 2 - 29","target":61}
-{"num":[93,49,30,86],"expression":"93 + 49 + 30 - 86","target":86}
-{"num":[37,63,66,16],"expression":"37 + 63 - 66 - 16","target":18}
-{"num":[6,5,92,53],"expression":"6 - 5 + 92 - 53","target":40}
-{"num":[6,58,57],"expression":"6 - 58 + 57","target":5}
-{"num":[0,91,20,67],"expression":"0 + 91 - 20 - 67","target":4}
-{"num":[94,13,49,71],"expression":"94 - 13 + 49 - 71","target":59}
-{"num":[90,58,98,50],"expression":"90 - 58 + 98 - 50","target":80}
-{"num":[27,36,1],"expression":"27 + 36 + 1","target":64}
-{"num":[58,48,48],"expression":"58 - 48 \/ 48","target":57}
-{"num":[49,76,28,61],"expression":"49 + 76 + 28 - 61","target":92}
-{"num":[41,75,92],"expression":"41 - 75 + 92","target":58}
-{"num":[49,44,6,76],"expression":"49 + 44 + 6 - 76","target":23}
-{"num":[83,80,46],"expression":"83 - 80 + 46","target":49}
-{"num":[20,50,38],"expression":"20 - 50 + 38","target":8}
-{"num":[66,53,4],"expression":"66 - 53 + 4","target":17}
-{"num":[0,71,43],"expression":"0 \/ 71 \/ 43","target":0}
-{"num":[2,3,9],"expression":"2 * 3 * 9","target":54}
-{"num":[46,16,16,7],"expression":"46 \/ 16 * 16 + 7","target":53}
+{"num":[98,61,84],"expression":"98 + 61 - 84","target":75}
+{"num":[0,5,89,1],"expression":"0 \/ 5 \/ 89 + 1","target":1}
+{"num":[34,5,1],"expression":"34 - 5 + 1","target":30}
+{"num":[44,7,9],"expression":"44 - (7 - 9)","target":46}
+{"num":[27,64,70],"expression":"27 - 64 + 70","target":33}
+{"num":[0,14,80],"expression":"0 * (14 + 80)","target":0}
+{"num":[69,14,4,10],"expression":"69 - 14 * 4 - 10","target":3}
+{"num":[54,48,40,20,1],"expression":"54 - 48 + 40 + 20 - 1","target":65}
+{"num":[42,37,1,28,23],"expression":"42 - 37 + 1 + 28 - 23","target":11}
+{"num":[83,0,49],"expression":"83 * (0 \/ 49)","target":0}
+{"num":[47,21,15],"expression":"47 + (21 - 15)","target":53}
+{"num":[80,70,30],"expression":"80 - (70 - 30)","target":40}
+{"num":[36,79,66],"expression":"36 - 79 + 66","target":23}
+{"num":[58,40,43],"expression":"58 - 40 + 43","target":61}
+{"num":[29,62,91],"expression":"29 + 62 - 91","target":0}
+{"num":[45,29,6,23],"expression":"45 + 29 - 6 - 23","target":45}
+{"num":[80,34,88,51],"expression":"80 + 34 - 88 + 51","target":77}
+{"num":[18,39,0],"expression":"18 * 39 * 0","target":0}
+{"num":[44,67,59],"expression":"44 + 67 - 59","target":52}
+{"num":[46,92,59],"expression":"46 - (92 - 59)","target":13}
+{"num":[66,7,74,37,60],"expression":"66 - 7 + 74 \/ 37 - 60","target":1}
+{"num":[65,1,48],"expression":"65 * 1 - 48","target":17}
+{"num":[3,39,36,55,63],"expression":"3 + 39 + 36 - 55 + 63","target":86}
+{"num":[37,15,46],"expression":"37 + 15 + 46","target":98}
+{"num":[48,96,82],"expression":"48 + 96 - 82","target":62}
+{"num":[96,63,42,22,81],"expression":"96 \/ 63 * 42 + 22 - 81","target":5}
+{"num":[40,3,95,95],"expression":"40 - 3 - 95 \/ 95","target":36}
+{"num":[37,95,47,93,74],"expression":"37 + 95 + 47 - 93 - 74","target":12}
+{"num":[33,91,89],"expression":"33 * (91 - 89)","target":66}
+{"num":[32,64,0,15],"expression":"32 + 64 * 0 - 15","target":17}
+{"num":[55,35,0,63],"expression":"55 - 35 + 0 * 63","target":20}
+{"num":[51,94,82],"expression":"51 - 94 + 82","target":39}
+{"num":[21,14,19],"expression":"21 + 14 + 19","target":54}
+{"num":[22,26,0],"expression":"22 - 26 * 0","target":22}
+{"num":[71,7,35],"expression":"71 + (7 - 35)","target":43}
+{"num":[70,0,73],"expression":"70 - 0 * 73","target":70}
+{"num":[14,59,46],"expression":"14 + 59 - 46","target":27}
+{"num":[45,52,19],"expression":"45 - 52 + 19","target":12}
+{"num":[18,35,85],"expression":"18 - 35 + 85","target":68}
+{"num":[18,31,12,5],"expression":"18 - 31 + 12 + 5","target":4}
+{"num":[4,4,9],"expression":"4 + 4 * 9","target":40}
+{"num":[72,65,40],"expression":"72 - (65 - 40)","target":47}
+{"num":[8,12,66,44],"expression":"8 + 12 * 66 \/ 44","target":26}
+{"num":[38,54,92,65],"expression":"38 - 54 \/ (92 - 65)","target":36}
+{"num":[5,5,7,15],"expression":"5 - 5 * (7 - 15)","target":45}
+{"num":[24,59,12,24,63],"expression":"24 - 59 - 12 + 24 + 63","target":40}
+{"num":[77,33,39,24],"expression":"77 - 33 + (39 - 24)","target":59}
+{"num":[46,32,1],"expression":"46 - (32 \/ 1)","target":14}
+{"num":[16,19,39],"expression":"16 + (19 + 39)","target":74}
+{"num":[35,33,33],"expression":"35 * 33 \/ 33","target":35}
+{"num":[63,35,90],"expression":"63 + 35 - 90","target":8}
+{"num":[44,1,42],"expression":"44 + 1 * 42","target":86}
+{"num":[0,3,64,71,78],"expression":"0 \/ 3 \/ 64 * 71 \/ 78","target":0}
+{"num":[85,48,63],"expression":"85 + 48 - 63","target":70}
+{"num":[90,75,49,11],"expression":"90 - 75 + 49 + 11","target":75}
+{"num":[36,12,13],"expression":"36 + 12 + 13","target":61}
+{"num":[90,45,90],"expression":"90 \/ 45 + 90","target":92}
+{"num":[10,89,0],"expression":"10 + 89 + 0","target":99}
+{"num":[0,0,13,95],"expression":"0 * 0 - 13 + 95","target":82}
+{"num":[95,24,12],"expression":"95 - (24 + 12)","target":59}
+{"num":[87,15,52,52],"expression":"87 - 15 - 52 + 52","target":72}
+{"num":[14,0,38],"expression":"14 - (0 \/ 38)","target":14}
+{"num":[10,22,52],"expression":"10 - (22 - 52)","target":40}
+{"num":[68,54,64],"expression":"68 - 54 + 64","target":78}
+{"num":[63,12,4],"expression":"63 + 12 \/ 4","target":66}
+{"num":[92,13,3],"expression":"92 - (13 - 3)","target":82}
+{"num":[0,5,57,23],"expression":"0 * 5 * (57 * 23)","target":0}
+{"num":[1,48,45],"expression":"1 * 48 + 45","target":93}
+{"num":[52,16,5],"expression":"52 + 16 + 5","target":73}
+{"num":[57,44,78,28],"expression":"57 - 44 + (78 - 28)","target":63}
+{"num":[73,52,21],"expression":"73 - 52 - 21","target":0}
+{"num":[1,90,46],"expression":"1 + (90 - 46)","target":45}
+{"num":[75,12,0],"expression":"75 + (12 + 0)","target":87}
+{"num":[58,55,3,36],"expression":"58 + 55 - (3 * 36)","target":5}
+{"num":[6,0,7],"expression":"6 + (0 \/ 7)","target":6}
+{"num":[87,28,91,64],"expression":"87 - 28 + 91 - 64","target":86}
+{"num":[0,84,14],"expression":"0 * 84 * 14","target":0}
+{"num":[34,0,51,45],"expression":"34 + 0 - (51 - 45)","target":28}
+{"num":[90,18,9,7],"expression":"90 \/ 18 - 9 + 7","target":3}
+{"num":[86,47,33],"expression":"86 - 47 + 33","target":72}
+{"num":[45,47,0,63],"expression":"45 - 47 + (0 + 63)","target":61}
+{"num":[56,97,33,76,23],"expression":"56 + 97 + 33 - (76 + 23)","target":87}
+{"num":[36,78,0,96,12],"expression":"36 \/ 78 * 0 + 96 \/ 12","target":8}
+{"num":[38,0,72,95,31],"expression":"38 + 0 \/ 72 * 95 \/ 31","target":38}
+{"num":[90,4,15],"expression":"90 - (4 + 15)","target":71}
+{"num":[16,28,98],"expression":"16 - 28 + 98","target":86}
+{"num":[74,7,67,22],"expression":"74 + 7 - 67 + 22","target":36}
+{"num":[65,8,17,18],"expression":"65 - 8 + (17 + 18)","target":92}
+{"num":[26,16,84,84],"expression":"26 - 16 + 84 \/ 84","target":11}
+{"num":[82,4,6],"expression":"82 - (4 + 6)","target":72}
+{"num":[61,77,56],"expression":"61 + 77 - 56","target":82}
+{"num":[44,6,15,25,88],"expression":"44 + 6 * 15 - 25 - 88","target":21}
+{"num":[68,69,44],"expression":"68 - 69 + 44","target":43}
+{"num":[7,4,20,12,9],"expression":"7 \/ 4 * 20 + (12 + 9)","target":56}
+{"num":[47,86,92],"expression":"47 - 86 + 92","target":53}
+{"num":[10,26,0,75,38],"expression":"10 * 26 * 0 * 75 \/ 38","target":0}
+{"num":[41,29,27],"expression":"41 - 29 + 27","target":39}
+{"num":[76,20,5],"expression":"76 - 20 + 5","target":61}
+{"num":[89,93,0],"expression":"89 * 93 * 0","target":0}
+{"num":[66,45,14],"expression":"66 + 45 - 14","target":97}
+{"num":[51,45,53],"expression":"51 - 45 + 53","target":59}
+{"num":[29,20,38,93,39],"expression":"29 - 20 - 38 + (93 - 39)","target":25}
+{"num":[74,7,40,8],"expression":"74 - 7 * 40 \/ 8","target":39}
+{"num":[0,43,13],"expression":"0 \/ (43 + 13)","target":0}
+{"num":[18,6,1],"expression":"18 + (6 \/ 1)","target":24}
+{"num":[77,46,32,68,90],"expression":"77 + 46 - 32 + 68 - 90","target":69}
+{"num":[80,87,29],"expression":"80 - 87 + 29","target":22}
+{"num":[92,27,36,92],"expression":"92 - 27 + 36 - 92","target":9}
+{"num":[86,69,21],"expression":"86 - 69 + 21","target":38}
+{"num":[52,12,35],"expression":"52 - (12 - 35)","target":75}
+{"num":[95,78,50,72],"expression":"95 - 78 - 50 + 72","target":39}
+{"num":[71,93,71],"expression":"71 + 93 - 71","target":93}
+{"num":[64,0,82],"expression":"64 * (0 * 82)","target":0}
+{"num":[7,68,34],"expression":"7 + 68 \/ 34","target":9}
+{"num":[89,3,21,23],"expression":"89 + 3 * (21 - 23)","target":83}
+{"num":[70,15,1],"expression":"70 + 15 * 1","target":85}
+{"num":[39,27,1],"expression":"39 + 27 \/ 1","target":66}
+{"num":[72,28,80,39,72],"expression":"72 - 28 + 80 + 39 - 72","target":91}
+{"num":[90,28,47],"expression":"90 + (28 - 47)","target":71}
+{"num":[55,69,51,18,7],"expression":"55 - 69 + 51 + (18 + 7)","target":62}
+{"num":[90,91,59],"expression":"90 - 91 + 59","target":58}
+{"num":[37,0,30,26],"expression":"37 + 0 \/ 30 \/ 26","target":37}
+{"num":[58,36,1],"expression":"58 + (36 * 1)","target":94}
+{"num":[15,28,32],"expression":"15 - 28 + 32","target":19}
+{"num":[63,34,1],"expression":"63 + (34 \/ 1)","target":97}
+{"num":[19,3,36],"expression":"19 * 3 + 36","target":93}
+{"num":[95,16,20,10],"expression":"95 - 16 + 20 - 10","target":89}
+{"num":[25,4,28],"expression":"25 + 4 - 28","target":1}
+{"num":[57,56,82],"expression":"57 + 56 - 82","target":31}
+{"num":[13,43,33],"expression":"13 + 43 + 33","target":89}
+{"num":[65,72,59],"expression":"65 - 72 + 59","target":52}
+{"num":[6,60,66,35,99],"expression":"6 - 60 + 66 - (35 - 99)","target":76}
+{"num":[0,28,12],"expression":"0 \/ (28 + 12)","target":0}
+{"num":[91,48,5],"expression":"91 - (48 + 5)","target":38}
+{"num":[87,50,33],"expression":"87 - 50 + 33","target":70}
+{"num":[74,53,66],"expression":"74 + 53 - 66","target":61}
+{"num":[90,42,29,5],"expression":"90 + 42 - 29 - 5","target":98}
+{"num":[51,51,10],"expression":"51 \/ (51 \/ 10)","target":10}
+{"num":[53,83,5,39],"expression":"53 + 83 - 5 - 39","target":92}
+{"num":[46,10,51],"expression":"46 - 10 + 51","target":87}
+{"num":[40,12,16],"expression":"40 - 12 + 16","target":44}
+{"num":[84,65,8,24],"expression":"84 - 65 - 8 + 24","target":35}
+{"num":[0,30,87,42],"expression":"0 * 30 * 87 \/ 42","target":0}
+{"num":[25,12,38,69,25],"expression":"25 + 12 + 38 - 69 + 25","target":31}
+{"num":[76,13,0,33],"expression":"76 - 13 * (0 * 33)","target":76}
+{"num":[0,8,36,27],"expression":"0 + 8 * (36 - 27)","target":72}
+{"num":[74,85,79,6],"expression":"74 - 85 + (79 - 6)","target":62}
+{"num":[71,63,19],"expression":"71 - (63 - 19)","target":27}
+{"num":[6,58,0,93,90],"expression":"6 + 58 * 0 * 93 + 90","target":96}
+{"num":[64,6,6],"expression":"64 * (6 \/ 6)","target":64}
+{"num":[0,53,68],"expression":"0 \/ (53 \/ 68)","target":0}
+{"num":[25,46,15],"expression":"25 + 46 + 15","target":86}
+{"num":[0,11,28],"expression":"0 * 11 + 28","target":28}
+{"num":[0,95,65],"expression":"0 * 95 \/ 65","target":0}
+{"num":[38,18,19,55],"expression":"38 + 18 - 19 + 55","target":92}
+{"num":[46,80,36],"expression":"46 + 80 - 36","target":90}
+{"num":[19,41,8,32,6],"expression":"19 - 41 - 8 + 32 + 6","target":8}
+{"num":[20,19,81],"expression":"20 - 19 + 81","target":82}
+{"num":[26,49,50,87],"expression":"26 - 49 - 50 + 87","target":14}
+{"num":[54,5,17],"expression":"54 - 5 - 17","target":32}
+{"num":[97,88,19],"expression":"97 - (88 - 19)","target":28}
+{"num":[53,56,23],"expression":"53 + (56 - 23)","target":86}
+{"num":[0,15,73,9],"expression":"0 * 15 \/ (73 - 9)","target":0}
+{"num":[17,17,22],"expression":"17 + 17 - 22","target":12}
+{"num":[80,22,64,90,14],"expression":"80 - 22 - 64 + 90 - 14","target":70}
+{"num":[18,76,0,63],"expression":"18 + 76 - 0 - 63","target":31}
+{"num":[62,80,3,80],"expression":"62 + 80 * (3 \/ 80)","target":65}
+{"num":[9,0,15],"expression":"9 + 0 * 15","target":9}
+{"num":[26,48,2,58],"expression":"26 - 48 + 2 * 58","target":94}
+{"num":[81,35,2],"expression":"81 - 35 + 2","target":48}
+{"num":[66,81,58],"expression":"66 - (81 - 58)","target":43}
+{"num":[57,22,0],"expression":"57 - 22 * 0","target":57}
+{"num":[83,85,92,75],"expression":"83 + 85 - 92 - 75","target":1}
+{"num":[0,91,14,84,69],"expression":"0 \/ 91 * 14 * 84 \/ 69","target":0}
+{"num":[38,22,11],"expression":"38 + 22 \/ 11","target":40}
+{"num":[6,1,14],"expression":"6 * (1 + 14)","target":90}
+{"num":[78,63,48],"expression":"78 - 63 + 48","target":63}
+{"num":[54,79,97],"expression":"54 + 79 - 97","target":36}
+{"num":[53,38,61,95],"expression":"53 + 38 + (61 - 95)","target":57}
+{"num":[83,83,77],"expression":"83 \/ 83 * 77","target":77}
+{"num":[46,0,44,71],"expression":"46 - 0 \/ 44 \/ 71","target":46}
+{"num":[0,81,18],"expression":"0 + 81 + 18","target":99}
+{"num":[56,22,60],"expression":"56 + 22 - 60","target":18}
+{"num":[30,99,12,42,94],"expression":"30 - 99 - 12 + 42 + 94","target":55}
+{"num":[81,54,14],"expression":"81 \/ (54 \/ 14)","target":21}
+{"num":[12,62,55],"expression":"12 + 62 - 55","target":19}
+{"num":[53,42,20,73,16],"expression":"53 + 42 + 20 - 73 + 16","target":58}
+{"num":[48,1,7],"expression":"48 - 1 + 7","target":54}
+{"num":[92,4,87,82],"expression":"92 - 4 - 87 + 82","target":83}
+{"num":[68,45,1],"expression":"68 - 45 * 1","target":23}
+{"num":[13,0,42,41],"expression":"13 * 0 * (42 * 41)","target":0}
+{"num":[97,77,94],"expression":"97 + 77 - 94","target":80}
+{"num":[40,7,66,6],"expression":"40 + 7 - 66 \/ 6","target":36}
+{"num":[2,46,2,51],"expression":"2 - 46 - 2 + 51","target":5}
+{"num":[35,52,0],"expression":"35 + (52 + 0)","target":87}
+{"num":[11,6,1],"expression":"11 - (6 \/ 1)","target":5}
+{"num":[52,2,4],"expression":"52 + 2 - 4","target":50}
+{"num":[60,15,22,26],"expression":"60 + 15 * (22 - 26)","target":0}
+{"num":[72,7,56],"expression":"72 * (7 \/ 56)","target":9}
+{"num":[45,67,70,10],"expression":"45 + 67 - 70 - 10","target":32}
