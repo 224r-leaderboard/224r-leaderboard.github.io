@@ -1,16 +1,11 @@
 import os
 import json
 import time
-import hashlib
-import torch
-import numpy as np
-from fastapi import FastAPI, File, UploadFile, HTTPException, Depends, status, Form, BackgroundTasks
+from fastapi import FastAPI, HTTPException, Depends, status, BackgroundTasks
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-from typing import List, Dict, Optional, Union
 from datetime import datetime
 from datasets import load_dataset
 from vllm import LLM, SamplingParams
@@ -47,12 +42,6 @@ if not os.path.exists(LEADERBOARD_FILE):
             "instruction_following": [],
             "math_reasoning": []
         }, f)
-
-# Load base model (Qwen 2.5 0.5B non-instruct)
-def load_base_model():
-    tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-0.5B")
-    model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-0.5B")
-    return tokenizer, model
 
 # Models for validation
 class SubmissionRequest(BaseModel):
