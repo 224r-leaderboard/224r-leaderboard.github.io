@@ -322,7 +322,7 @@ async def get_guidelines():
     """)
     else:
         return HTMLResponse("""
-<h3>Submission Guidelines</h3>
+<h2>Submission Guidelines</h2>
 
 <h4>Stylistic Personalization</h4>
 <p>Models should adapt to individual writing styles and communication preferences.</p>
