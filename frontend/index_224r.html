@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personalization Leaderboard</title>
+    <title>ML Model Leaderboard</title>
     <style>
         :root {
             --primary: #3498db;
@@ -194,6 +194,28 @@
             color: white;
         }
         
+        .thresholds {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .threshold-card {
+            flex: 1;
+            padding: 15px;
+            margin: 0 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .threshold-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
         .loading {
             display: flex;
             justify-content: center;
@@ -218,8 +240,8 @@
 </head>
 <body>
     <header>
-        <h1>Personalization Leaderboard</h1>
-        <p>Compare and submit personalization approaches</p>
+        <h1>CS 224r Leaderboard</h1>
+        <p>Compare and submit model approaches using Qwen 2.5 0.5B</p>
     </header>
     
     <nav>
@@ -236,14 +258,29 @@
         <section id="leaderboard-section">
             <h2>Current Standings</h2>
             
+            <div class="thresholds">
+                <div class="threshold-card">
+                    <h3>Instruction Following</h3>
+                    <p>Basic Implementation</p>
+                    <div class="threshold-value" id="if-basic-threshold">0.65</div>
+                    <p>Extension Threshold</p>
+                    <div class="threshold-value" id="if-extension-threshold">0.75</div>
+                </div>
+                <div class="threshold-card">
+                    <h3>Math Reasoning</h3>
+                    <p>Basic Implementation</p>
+                    <div class="threshold-value" id="math-basic-threshold">0.60</div>
+                    <p>Extension Threshold</p>
+                    <div class="threshold-value" id="math-extension-threshold">0.70</div>
+                </div>
+            </div>
+            
             <div class="tabs">
-                <div class="tab active" onclick="switchTab('style-tab', 'stylistic_personalization')">Stylistic Personalization</div>
-                <div class="tab" onclick="switchTab('rec-tab', 'recommendation_personalization')">Recommendation Personalization</div>
-                <div class="tab" onclick="switchTab('value-tab', 'value_personalization')">Value Personalization</div>
-                <div class="tab" onclick="switchTab('concierge-tab', 'concierge_personalization')">Concierge</div>
+                <div class="tab active" onclick="switchTab('instruction-tab', 'instruction_following')">Instruction Following</div>
+                <div class="tab" onclick="switchTab('math-tab', 'math_reasoning')">Math Reasoning</div>
             </div>
             
-            <div class="card" id="style-tab">
+            <div class="card" id="instruction-tab">
                 <table>
                     <thead>
                         <tr>
@@ -254,7 +291,7 @@
                             <th>Description</th>
                         </tr>
                     </thead>
-                    <tbody id="style-leaderboard">
+                    <tbody id="instruction-leaderboard">
                         <tr>
                             <td colspan="5" class="loading">
                                 <div class="spinner"></div>
@@ -264,7 +301,7 @@
                 </table>
             </div>
             
-            <div class="card" id="rec-tab" style="display: none;">
+            <div class="card" id="math-tab" style="display: none;">
                 <table>
                     <thead>
                         <tr>
@@ -275,49 +312,7 @@
                             <th>Description</th>
                         </tr>
                     </thead>
-                    <tbody id="rec-leaderboard">
-                        <tr>
-                            <td colspan="5" class="loading">
-                                <div class="spinner"></div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card" id="value-tab" style="display: none;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Group Name</th>
-                            <th>Score</th>
-                            <th>Submission Time</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody id="value-leaderboard">
-                        <tr>
-                            <td colspan="5" class="loading">
-                                <div class="spinner"></div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card" id="concierge-tab" style="display: none;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Group Name</th>
-                            <th>Score</th>
-                            <th>Submission Time</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody id="concierge-leaderboard">
+                    <tbody id="math-leaderboard">
                         <tr>
                             <td colspan="5" class="loading">
                                 <div class="spinner"></div>
@@ -343,16 +338,14 @@
                     <div class="form-group">
                         <label for="task-type">Task Type</label>
                         <select id="task-type" required>
-                            <option value="stylistic_personalization">Stylistic Personalization</option>
-                            <option value="recommendation_personalization">Recommendation Personalization</option>
-                            <option value="value_personalization">Value Personalization</option>
-                            <option value="concierge_personalization">Concierge</option>
+                            <option value="instruction_following">Instruction Following (Ultrafeedback)</option>
+                            <option value="math_reasoning">Math Reasoning (Countdown)</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="model-path">Model Huggingface Path</label>
-                        <input type="text" id="model-path" required placeholder="e.g., organization/model-name">
+                        <input type="text" id="model-path" required placeholder="e.g., Qwen/Qwen2.5-7B-Instruct">
                     </div>
                     
                     <button type="submit">Submit Model</button>
@@ -402,7 +395,8 @@
             document.getElementById(`${sectionName}-section`).style.display = 'block';
             
             if (sectionName === 'leaderboard') {
-                loadLeaderboard('stylistic_personalization');
+                loadLeaderboard('instruction_following');
+                loadThresholds();
             } else if (sectionName === 'guidelines') {
                 loadGuidelines();
             }
@@ -411,10 +405,8 @@
         // Switch between tabs
         function switchTab(tabId, taskType) {
             // Hide all tabs
-            document.getElementById('style-tab').style.display = 'none';
-            document.getElementById('rec-tab').style.display = 'none';
-            document.getElementById('value-tab').style.display = 'none';
-            document.getElementById('concierge-tab').style.display = 'none';
+            document.getElementById('instruction-tab').style.display = 'none';
+            document.getElementById('math-tab').style.display = 'none';
             
             // Show the selected tab
             document.getElementById(tabId).style.display = 'block';
@@ -431,10 +423,7 @@
         
         // Load leaderboard data
         async function loadLeaderboard(taskType) {
-            const tableId = taskType === 'stylistic_personalization' ? 'style-leaderboard' : 
-                          taskType === 'recommendation_personalization' ? 'rec-leaderboard' : 
-                          taskType === 'value_personalization' ? 'value-leaderboard' :
-                          'concierge-leaderboard';
+            const tableId = taskType === 'instruction_following' ? 'instruction-leaderboard' : 'math-leaderboard';
             const tableBody = document.getElementById(tableId);
             
             // Show loading spinner
@@ -485,65 +474,29 @@
                     tableBody.appendChild(row);
                 }
             } catch (error) {
-                // Dummy data for visualization
-                const dummyData = {
-                    'stylistic_personalization': [
-                        { rank: 1, group_name: 'StyleMasters', score: 0.92, submission_time: '2024-03-15T14:30:00Z', model_huggingface_path: 'StyleMasters/llama-2-7b-style' },
-                        { rank: 2, group_name: 'ToneTuners', score: 0.89, submission_time: '2024-03-14T10:15:00Z', model_huggingface_path: 'ToneTuners/mistral-7b-tone' },
-                        { rank: 3, group_name: 'VoiceCrafters', score: 0.87, submission_time: '2024-03-13T16:45:00Z', model_huggingface_path: 'VoiceCrafters/gemma-7b-voice' },
-                        { rank: 4, group_name: 'StyleSquad', score: 0.85, submission_time: '2024-03-12T09:20:00Z', model_huggingface_path: 'StyleSquad/phi-2-style' },
-                        { rank: 5, group_name: 'ToneTeam', score: 0.82, submission_time: '2024-03-11T11:30:00Z', model_huggingface_path: 'ToneTeam/llama-2-13b-tone' }
-                    ],
-                    'recommendation_personalization': [
-                        { rank: 1, group_name: 'RecMasters', score: 0.95, submission_time: '2024-03-15T13:20:00Z', model_huggingface_path: 'RecMasters/llama-2-7b-rec' },
-                        { rank: 2, group_name: 'PrefPredictors', score: 0.91, submission_time: '2024-03-14T15:45:00Z', model_huggingface_path: 'PrefPredictors/mistral-7b-pref' },
-                        { rank: 3, group_name: 'ChoiceCrafters', score: 0.88, submission_time: '2024-03-13T12:30:00Z', model_huggingface_path: 'ChoiceCrafters/gemma-7b-choice' },
-                        { rank: 4, group_name: 'RecSquad', score: 0.86, submission_time: '2024-03-12T10:15:00Z', model_huggingface_path: 'RecSquad/phi-2-rec' },
-                        { rank: 5, group_name: 'PrefTeam', score: 0.83, submission_time: '2024-03-11T14:20:00Z', model_huggingface_path: 'PrefTeam/llama-2-13b-pref' }
-                    ],
-                    'value_personalization': [
-                        { rank: 1, group_name: 'ValueMasters', score: 0.94, submission_time: '2024-03-15T11:40:00Z', model_huggingface_path: 'ValueMasters/llama-2-7b-value' },
-                        { rank: 2, group_name: 'EthosExperts', score: 0.90, submission_time: '2024-03-14T13:25:00Z', model_huggingface_path: 'EthosExperts/mistral-7b-ethos' },
-                        { rank: 3, group_name: 'ValueCrafters', score: 0.87, submission_time: '2024-03-13T09:50:00Z', model_huggingface_path: 'ValueCrafters/gemma-7b-value' },
-                        { rank: 4, group_name: 'ValueSquad', score: 0.85, submission_time: '2024-03-12T16:30:00Z', model_huggingface_path: 'ValueSquad/phi-2-value' },
-                        { rank: 5, group_name: 'EthosTeam', score: 0.82, submission_time: '2024-03-11T10:45:00Z', model_huggingface_path: 'EthosTeam/llama-2-13b-ethos' }
-                    ],
-                    'concierge_personalization': [
-                        { rank: 1, group_name: 'ConciergeMasters', score: 0.93, submission_time: '2024-03-15T10:30:00Z', model_huggingface_path: 'ConciergeMasters/llama-2-7b-concierge' },
-                        { rank: 2, group_name: 'ServiceExperts', score: 0.89, submission_time: '2024-03-14T12:15:00Z', model_huggingface_path: 'ServiceExperts/mistral-7b-service' },
-                        { rank: 3, group_name: 'ConciergeCrafters', score: 0.86, submission_time: '2024-03-13T14:40:00Z', model_huggingface_path: 'ConciergeCrafters/gemma-7b-concierge' },
-                        { rank: 4, group_name: 'ConciergeSquad', score: 0.84, submission_time: '2024-03-12T11:25:00Z', model_huggingface_path: 'ConciergeSquad/phi-2-concierge' },
-                        { rank: 5, group_name: 'ServiceTeam', score: 0.81, submission_time: '2024-03-11T13:50:00Z', model_huggingface_path: 'ServiceTeam/llama-2-13b-service' }
-                    ]
-                };
-
-                const data = dummyData[taskType];
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: red;">
+                            Error loading leaderboard data: ${error.message}
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+        
+        // Load thresholds
+        async function loadThresholds() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/thresholds`);
+                const data = await response.json();
                 
-                // Populate the table with dummy data
-                tableBody.innerHTML = '';
-                for (const entry of data) {
-                    const row = document.createElement('tr');
-                    
-                    // Add badge for top 3
-                    let rankDisplay = entry.rank;
-                    if (entry.rank === 1) {
-                        rankDisplay = `<span class="badge badge-gold">1</span>`;
-                    } else if (entry.rank === 2) {
-                        rankDisplay = `<span class="badge badge-silver">2</span>`;
-                    } else if (entry.rank === 3) {
-                        rankDisplay = `<span class="badge badge-bronze">3</span>`;
-                    }
-                    
-                    row.innerHTML = `
-                        <td>${rankDisplay}</td>
-                        <td>${entry.group_name}</td>
-                        <td>${entry.score.toFixed(4)}</td>
-                        <td>${new Date(entry.submission_time).toLocaleString()}</td>
-                        <td>${entry.model_huggingface_path}</td>
-                    `;
-                    
-                    tableBody.appendChild(row);
-                }
+                // Update the threshold displays
+                document.getElementById('if-basic-threshold').textContent = data.instruction_following.basic_implementation;
+                document.getElementById('if-extension-threshold').textContent = data.instruction_following.extension;
+                document.getElementById('math-basic-threshold').textContent = data.math_reasoning.basic_implementation;
+                document.getElementById('math-extension-threshold').textContent = data.math_reasoning.extension;
+            } catch (error) {
+                console.error('Error loading thresholds:', error);
             }
         }
         
@@ -578,7 +531,7 @@
             if (!modelPath.includes('/')) {
                 alertDiv.innerHTML = `
                     <div class="alert alert-error">
-                        Please enter a valid Hugging Face model path (e.g., organization/model-name)
+                        Please enter a valid Hugging Face model path (e.g., Qwen/Qwen2.5-7B-Instruct)
                     </div>
                 `;
                 alertDiv.style.display = 'block';
@@ -682,7 +635,8 @@
         
         // Load the leaderboard on page load
         document.addEventListener('DOMContentLoaded', function() {
-            loadLeaderboard('stylistic_personalization');
+            loadLeaderboard('instruction_following');
+            loadThresholds();
         });
     </script>
 </body>
