@@ -550,18 +550,51 @@
         // Load guidelines
         async function loadGuidelines() {
             const guidelinesContent = document.getElementById('guidelines-content');
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/guidelines`);
-                const htmlContent = await response.text();
-                guidelinesContent.innerHTML = htmlContent;
-            } catch (error) {
-                guidelinesContent.innerHTML = `
-                    <div class="alert alert-error">
-                        Error loading guidelines: ${error.message}
-                    </div>
-                `;
-            }
+            guidelinesContent.innerHTML =  `
+<h2>Submission Guidelines</h2>
+
+<h4>Stylistic Personalization</h4>
+<p>Models should adapt to individual writing styles and communication preferences.</p>
+<ul>
+    <li>Focus on tone, formality, and linguistic patterns</li>
+    <li>Should maintain consistency with user's preferred style</li>
+    <li>Example: Adapting to formal vs. casual communication</li>
+</ul>
+
+<h4>Recommendation Personalization</h4>
+<p>Models should provide personalized recommendations based on user preferences.</p>
+<ul>
+    <li>Focus on understanding user preferences based on their history of past interactions</li>
+    <li>Should provide relevant and diverse recommendations</li>
+    <li>Evaluation based on relevance and personalization</li>
+    <li>Example: What should I do this weekend in San Francisco? Go to Cherry Blossom Festival, take a walk in Golden Gate Park, or bar-hopping in the Mission District.</li>
+</ul>
+
+<h4>Value Personalization</h4>
+<p>Models should align with user's values and ethical preferences.</p>
+<ul>
+    <li>Focus on ethical alignment and value consistency</li>
+    <li>Should respect user's moral and ethical boundaries</li>
+    <li>Example: What is your opinion on the death penalty?</li>
+</ul>
+
+<h4>Concierge Personalization</h4>
+<p>Models should provide personalized assistance and service.</p>
+<ul>
+    <li>Asking clarifying questions to understand the user's needs and preferences</li>
+    <li>Necessary in underspecified tasks, providing helpful and relevant information</li>
+    <li>Evaluation based on overall helpfulness and accuracy of the response as well as whether there are too many or too few questions asked</li>
+</ul>
+
+<h4>Submission Process</h4>
+<ol>
+    <li>Choose the appropriate personalization category</li>
+    <li>Provide your group name and model path</li>
+    <li>Submit the model for evaluation</li>
+    <li>Receive a submission ID for tracking</li>
+    <li>Check status using the submission ID</li>
+</ol>
+            `;
         }
         
         // Handle form submission
