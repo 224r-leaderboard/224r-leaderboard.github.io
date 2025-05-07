@@ -408,4 +408,11 @@ async def root():
 # Start the server
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=10000, reload=True)
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=10000,
+        ssl_keyfile="/home/anikaitsingh/key.pem",
+        ssl_certfile="/home/anikaitsingh/cert.pem",
+        reload=True
+    )
