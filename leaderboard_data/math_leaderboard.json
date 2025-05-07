@@ -1,0 +1,32 @@
+[
+    {
+        "rank": 1,
+        "group_name": "Math Geniuses",
+        "score": 0.8912,
+        "submission_time": "2024-03-15T15:45:00Z"
+    },
+    {
+        "rank": 2,
+        "group_name": "Number Ninjas",
+        "score": 0.8543,
+        "submission_time": "2024-03-15T14:20:00Z"
+    },
+    {
+        "rank": 3,
+        "group_name": "Logic Legends",
+        "score": 0.8321,
+        "submission_time": "2024-03-15T10:15:00Z"
+    },
+    {
+        "rank": 4,
+        "group_name": "Problem Solvers",
+        "score": 0.8012,
+        "submission_time": "2024-03-14T17:30:00Z"
+    },
+    {
+        "rank": 5,
+        "group_name": "Math Masters",
+        "score": 0.7845,
+        "submission_time": "2024-03-14T13:45:00Z"
+    }
+]

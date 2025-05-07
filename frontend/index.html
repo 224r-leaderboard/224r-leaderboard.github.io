@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personalization Arena</title>
+    <title>ML Model Leaderboard</title>
     <style>
         :root {
             --primary: #3498db;
@@ -194,6 +194,28 @@
             color: white;
         }
         
+        .thresholds {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .threshold-card {
+            flex: 1;
+            padding: 15px;
+            margin: 0 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .threshold-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
         .loading {
             display: flex;
             justify-content: center;
@@ -218,17 +240,16 @@
 </head>
 <body>
     <header>
-        <h1>Personalization Arena</h1>
-        <p>Compare and submit personalization approaches</p>
+        <h1>CS 224r Leaderboard</h1>
+        <p>Compare and submit model approaches using Qwen 2.5 0.5B</p>
     </header>
     
     <nav>
         <ul>
             <li><a href="#" onclick="showSection('leaderboard')">Leaderboard</a></li>
             <li><a href="#" onclick="showSection('submit')">Submit Model</a></li>
-            <li><a href="#" onclick="showSection('status')">Submission Status</a></li>
+            <li><a href="#" onclick="showSection('submission-status')">Submission Status</a></li>
             <li><a href="#" onclick="showSection('guidelines')">Guidelines</a></li>
-            <li><a href='https://personal-rm-ui.vercel.app/'>Try Personalized Chat</a></li>
         </ul>
     </nav>
     
@@ -237,14 +258,29 @@
         <section id="leaderboard-section">
             <h2>Current Standings</h2>
             
+            <div class="thresholds">
+                <div class="threshold-card">
+                    <h3>Instruction Following</h3>
+                    <p>Basic Implementation</p>
+                    <div class="threshold-value" id="if-basic-threshold">0.65</div>
+                    <p>Extension Threshold</p>
+                    <div class="threshold-value" id="if-extension-threshold">0.75</div>
+                </div>
+                <div class="threshold-card">
+                    <h3>Math Reasoning</h3>
+                    <p>Basic Implementation</p>
+                    <div class="threshold-value" id="math-basic-threshold">0.60</div>
+                    <p>Extension Threshold</p>
+                    <div class="threshold-value" id="math-extension-threshold">0.70</div>
+                </div>
+            </div>
+            
             <div class="tabs">
-                <div class="tab active" onclick="switchTab('style-tab', 'stylistic_personalization')">Stylistic Personalization</div>
-                <div class="tab" onclick="switchTab('rec-tab', 'recommendation_personalization')">Recommendation Personalization</div>
-                <div class="tab" onclick="switchTab('value-tab', 'value_personalization')">Value Personalization</div>
-                <div class="tab" onclick="switchTab('concierge-tab', 'concierge_personalization')">Concierge</div>
+                <div class="tab active" onclick="switchTab('instruction-tab', 'instruction_following')">Instruction Following</div>
+                <div class="tab" onclick="switchTab('math-tab', 'math_reasoning')">Math Reasoning</div>
             </div>
             
-            <div class="card" id="style-tab">
+            <div class="card" id="instruction-tab">
                 <table>
                     <thead>
                         <tr>
@@ -252,10 +288,9 @@
                             <th>Group Name</th>
                             <th>Score</th>
                             <th>Submission Time</th>
-                            <th>Description</th>
                         </tr>
                     </thead>
-                    <tbody id="style-leaderboard">
+                    <tbody id="instruction-leaderboard">
                         <tr>
                             <td colspan="5" class="loading">
                                 <div class="spinner"></div>
@@ -265,7 +300,7 @@
                 </table>
             </div>
             
-            <div class="card" id="rec-tab" style="display: none;">
+            <div class="card" id="math-tab" style="display: none;">
                 <table>
                     <thead>
                         <tr>
@@ -273,52 +308,9 @@
                             <th>Group Name</th>
                             <th>Score</th>
                             <th>Submission Time</th>
-                            <th>Description</th>
                         </tr>
                     </thead>
-                    <tbody id="rec-leaderboard">
-                        <tr>
-                            <td colspan="5" class="loading">
-                                <div class="spinner"></div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card" id="value-tab" style="display: none;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Group Name</th>
-                            <th>Score</th>
-                            <th>Submission Time</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody id="value-leaderboard">
-                        <tr>
-                            <td colspan="5" class="loading">
-                                <div class="spinner"></div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card" id="concierge-tab" style="display: none;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Group Name</th>
-                            <th>Score</th>
-                            <th>Submission Time</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody id="concierge-leaderboard">
+                    <tbody id="math-leaderboard">
                         <tr>
                             <td colspan="5" class="loading">
                                 <div class="spinner"></div>
@@ -344,35 +336,19 @@
                     <div class="form-group">
                         <label for="task-type">Task Type</label>
                         <select id="task-type" required>
-                            <option value="stylistic_personalization">Stylistic Personalization</option>
-                            <option value="recommendation_personalization">Recommendation Personalization</option>
-                            <option value="value_personalization">Value Personalization</option>
-                            <option value="concierge_personalization">Concierge</option>
+                            <option value="instruction_following">Instruction Following (Ultrafeedback)</option>
+                            <option value="math_reasoning">Math Reasoning (Countdown)</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="model-path">Model Huggingface Path</label>
-                        <input type="text" id="model-path" required placeholder="e.g., organization/model-name">
+                        <label for="responses-json">Generated Responses (JSON)</label>
+                        <input type="file" id="responses-json" accept=".json" required>
+                        <small class="form-text text-muted">Upload a JSON file containing your model's generated responses</small>
                     </div>
                     
-                    <button type="submit">Submit Model</button>
+                    <button type="submit">Submit Responses</button>
                 </form>
-            </div>
-        </section>
-        
-        <!-- Submission Status Section -->
-        <section id="status-section" style="display: none;">
-            <h2>Check Submission Status</h2>
-            <div class="card">
-                <div class="form-group">
-                    <label for="submission-id">Submission ID</label>
-                    <input type="text" id="submission-id" placeholder="Enter your submission ID">
-                </div>
-                
-                <button onclick="checkSubmissionStatus()">Check Status</button>
-                
-                <div id="status-result" style="margin-top: 20px; display: none;"></div>
             </div>
         </section>
         
@@ -387,23 +363,37 @@
                 </div>
             </div>
         </section>
+
+        <!-- Submission Status Section -->
+        <section id="submission-status-section" style="display: none;">
+            <h2>Check Submission Status</h2>
+            <div class="card">
+                <div class="form-group">
+                    <label for="submission-id">Submission ID</label>
+                    <input type="text" id="submission-id" placeholder="Enter your submission ID">
+                    <button onclick="checkSubmissionStatus()">Check Status</button>
+                </div>
+                <div id="submission-status-result" style="display: none;"></div>
+            </div>
+        </section>
     </div>
     
     <script>
         // API base URL - change this to match your server
-        const API_BASE_URL = 'http://localhost:8000';
+        const API_BASE_URL = 'http://localhost:8050';
         
         // Show/hide sections
         function showSection(sectionName) {
             document.getElementById('leaderboard-section').style.display = 'none';
             document.getElementById('submit-section').style.display = 'none';
-            document.getElementById('status-section').style.display = 'none';
             document.getElementById('guidelines-section').style.display = 'none';
+            document.getElementById('submission-status-section').style.display = 'none';
             
             document.getElementById(`${sectionName}-section`).style.display = 'block';
             
             if (sectionName === 'leaderboard') {
-                loadLeaderboard('stylistic_personalization');
+                loadLeaderboard('instruction_following');
+                loadThresholds();
             } else if (sectionName === 'guidelines') {
                 loadGuidelines();
             }
@@ -412,10 +402,8 @@
         // Switch between tabs
         function switchTab(tabId, taskType) {
             // Hide all tabs
-            document.getElementById('style-tab').style.display = 'none';
-            document.getElementById('rec-tab').style.display = 'none';
-            document.getElementById('value-tab').style.display = 'none';
-            document.getElementById('concierge-tab').style.display = 'none';
+            document.getElementById('instruction-tab').style.display = 'none';
+            document.getElementById('math-tab').style.display = 'none';
             
             // Show the selected tab
             document.getElementById(tabId).style.display = 'block';
@@ -432,10 +420,7 @@
         
         // Load leaderboard data
         async function loadLeaderboard(taskType) {
-            const tableId = taskType === 'stylistic_personalization' ? 'style-leaderboard' : 
-                          taskType === 'recommendation_personalization' ? 'rec-leaderboard' : 
-                          taskType === 'value_personalization' ? 'value-leaderboard' :
-                          'concierge-leaderboard';
+            const tableId = taskType === 'instruction_following' ? 'instruction-leaderboard' : 'math-leaderboard';
             const tableBody = document.getElementById(tableId);
             
             // Show loading spinner
@@ -480,122 +465,52 @@
                         <td>${entry.group_name}</td>
                         <td>${entry.score.toFixed(4)}</td>
                         <td>${new Date(entry.submission_time).toLocaleString()}</td>
-                        <td>${entry.model_huggingface_path}</td>
                     `;
                     
                     tableBody.appendChild(row);
                 }
             } catch (error) {
-                // Dummy data for visualization
-                const dummyData = {
-                    'stylistic_personalization': [
-                        { rank: 1, group_name: 'StyleMasters', score: 0.92, submission_time: '2024-03-15T14:30:00Z', model_huggingface_path: 'StyleMasters/llama-2-7b-style' },
-                        { rank: 2, group_name: 'ToneTuners', score: 0.89, submission_time: '2024-03-14T10:15:00Z', model_huggingface_path: 'ToneTuners/mistral-7b-tone' },
-                        { rank: 3, group_name: 'VoiceCrafters', score: 0.87, submission_time: '2024-03-13T16:45:00Z', model_huggingface_path: 'VoiceCrafters/gemma-7b-voice' },
-                        { rank: 4, group_name: 'StyleSquad', score: 0.85, submission_time: '2024-03-12T09:20:00Z', model_huggingface_path: 'StyleSquad/phi-2-style' },
-                        { rank: 5, group_name: 'ToneTeam', score: 0.82, submission_time: '2024-03-11T11:30:00Z', model_huggingface_path: 'ToneTeam/llama-2-13b-tone' }
-                    ],
-                    'recommendation_personalization': [
-                        { rank: 1, group_name: 'RecMasters', score: 0.95, submission_time: '2024-03-15T13:20:00Z', model_huggingface_path: 'RecMasters/llama-2-7b-rec' },
-                        { rank: 2, group_name: 'PrefPredictors', score: 0.91, submission_time: '2024-03-14T15:45:00Z', model_huggingface_path: 'PrefPredictors/mistral-7b-pref' },
-                        { rank: 3, group_name: 'ChoiceCrafters', score: 0.88, submission_time: '2024-03-13T12:30:00Z', model_huggingface_path: 'ChoiceCrafters/gemma-7b-choice' },
-                        { rank: 4, group_name: 'RecSquad', score: 0.86, submission_time: '2024-03-12T10:15:00Z', model_huggingface_path: 'RecSquad/phi-2-rec' },
-                        { rank: 5, group_name: 'PrefTeam', score: 0.83, submission_time: '2024-03-11T14:20:00Z', model_huggingface_path: 'PrefTeam/llama-2-13b-pref' }
-                    ],
-                    'value_personalization': [
-                        { rank: 1, group_name: 'ValueMasters', score: 0.94, submission_time: '2024-03-15T11:40:00Z', model_huggingface_path: 'ValueMasters/llama-2-7b-value' },
-                        { rank: 2, group_name: 'EthosExperts', score: 0.90, submission_time: '2024-03-14T13:25:00Z', model_huggingface_path: 'EthosExperts/mistral-7b-ethos' },
-                        { rank: 3, group_name: 'ValueCrafters', score: 0.87, submission_time: '2024-03-13T09:50:00Z', model_huggingface_path: 'ValueCrafters/gemma-7b-value' },
-                        { rank: 4, group_name: 'ValueSquad', score: 0.85, submission_time: '2024-03-12T16:30:00Z', model_huggingface_path: 'ValueSquad/phi-2-value' },
-                        { rank: 5, group_name: 'EthosTeam', score: 0.82, submission_time: '2024-03-11T10:45:00Z', model_huggingface_path: 'EthosTeam/llama-2-13b-ethos' }
-                    ],
-                    'concierge_personalization': [
-                        { rank: 1, group_name: 'ConciergeMasters', score: 0.93, submission_time: '2024-03-15T10:30:00Z', model_huggingface_path: 'ConciergeMasters/llama-2-7b-concierge' },
-                        { rank: 2, group_name: 'ServiceExperts', score: 0.89, submission_time: '2024-03-14T12:15:00Z', model_huggingface_path: 'ServiceExperts/mistral-7b-service' },
-                        { rank: 3, group_name: 'ConciergeCrafters', score: 0.86, submission_time: '2024-03-13T14:40:00Z', model_huggingface_path: 'ConciergeCrafters/gemma-7b-concierge' },
-                        { rank: 4, group_name: 'ConciergeSquad', score: 0.84, submission_time: '2024-03-12T11:25:00Z', model_huggingface_path: 'ConciergeSquad/phi-2-concierge' },
-                        { rank: 5, group_name: 'ServiceTeam', score: 0.81, submission_time: '2024-03-11T13:50:00Z', model_huggingface_path: 'ServiceTeam/llama-2-13b-service' }
-                    ]
-                };
-
-                const data = dummyData[taskType];
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: red;">
+                            Error loading leaderboard data: ${error.message}
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+        
+        // Load thresholds
+        async function loadThresholds() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/thresholds`);
+                const data = await response.json();
                 
-                // Populate the table with dummy data
-                tableBody.innerHTML = '';
-                for (const entry of data) {
-                    const row = document.createElement('tr');
-                    
-                    // Add badge for top 3
-                    let rankDisplay = entry.rank;
-                    if (entry.rank === 1) {
-                        rankDisplay = `<span class="badge badge-gold">1</span>`;
-                    } else if (entry.rank === 2) {
-                        rankDisplay = `<span class="badge badge-silver">2</span>`;
-                    } else if (entry.rank === 3) {
-                        rankDisplay = `<span class="badge badge-bronze">3</span>`;
-                    }
-                    
-                    row.innerHTML = `
-                        <td>${rankDisplay}</td>
-                        <td>${entry.group_name}</td>
-                        <td>${entry.score.toFixed(4)}</td>
-                        <td>${new Date(entry.submission_time).toLocaleString()}</td>
-                        <td>${entry.model_huggingface_path}</td>
-                    `;
-                    
-                    tableBody.appendChild(row);
-                }
+                // Update the threshold displays
+                document.getElementById('if-basic-threshold').textContent = data.instruction_following.basic_implementation;
+                document.getElementById('if-extension-threshold').textContent = data.instruction_following.extension;
+                document.getElementById('math-basic-threshold').textContent = data.math_reasoning.basic_implementation;
+                document.getElementById('math-extension-threshold').textContent = data.math_reasoning.extension;
+            } catch (error) {
+                console.error('Error loading thresholds:', error);
             }
         }
         
         // Load guidelines
         async function loadGuidelines() {
             const guidelinesContent = document.getElementById('guidelines-content');
-            guidelinesContent.innerHTML =  `
-<h2>Submission Guidelines</h2>
-
-<h4>Stylistic Personalization</h4>
-<p>Models should adapt to individual writing styles and communication preferences.</p>
-<ul>
-    <li>Focus on tone, formality, and linguistic patterns</li>
-    <li>Should maintain consistency with user's preferred style</li>
-    <li>Example: Adapting to formal vs. casual communication</li>
-</ul>
-
-<h4>Recommendation Personalization</h4>
-<p>Models should provide personalized recommendations based on user preferences.</p>
-<ul>
-    <li>Focus on understanding user preferences based on their history of past interactions</li>
-    <li>Should provide relevant and diverse recommendations</li>
-    <li>Evaluation based on relevance and personalization</li>
-    <li>Example: What should I do this weekend in San Francisco? Go to Cherry Blossom Festival, take a walk in Golden Gate Park, or bar-hopping in the Mission District.</li>
-</ul>
-
-<h4>Value Personalization</h4>
-<p>Models should align with user's values and ethical preferences.</p>
-<ul>
-    <li>Focus on ethical alignment and value consistency</li>
-    <li>Should respect user's moral and ethical boundaries</li>
-    <li>Example: What is your opinion on the death penalty?</li>
-</ul>
-
-<h4>Concierge Personalization</h4>
-<p>Models should provide personalized assistance and service.</p>
-<ul>
-    <li>Asking clarifying questions to understand the user's needs and preferences</li>
-    <li>Necessary in underspecified tasks, providing helpful and relevant information</li>
-    <li>Evaluation based on overall helpfulness and accuracy of the response as well as whether there are too many or too few questions asked</li>
-</ul>
-
-<h4>Submission Process</h4>
-<ol>
-    <li>Choose the appropriate personalization category</li>
-    <li>Provide your group name and model path</li>
-    <li>Submit the model for evaluation</li>
-    <li>Receive a submission ID for tracking</li>
-    <li>Check status using the submission ID</li>
-</ol>
-            `;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/guidelines`);
+                const htmlContent = await response.text();
+                guidelinesContent.innerHTML = htmlContent;
+            } catch (error) {
+                guidelinesContent.innerHTML = `
+                    <div class="alert alert-error">
+                        Error loading guidelines: ${error.message}
+                    </div>
+                `;
+            }
         }
         
         // Handle form submission
@@ -607,20 +522,26 @@
             
             const groupName = document.getElementById('group-name').value;
             const taskType = document.getElementById('task-type').value;
-            const modelPath = document.getElementById('model-path').value;
+            const fileInput = document.getElementById('responses-json');
             
-            if (!modelPath.includes('/')) {
+            if (!fileInput.files.length) {
                 alertDiv.innerHTML = `
                     <div class="alert alert-error">
-                        Please enter a valid Hugging Face model path (e.g., organization/model-name)
+                        Please select a JSON file to upload
                     </div>
                 `;
                 alertDiv.style.display = 'block';
                 return;
             }
             
-            // Submit the model
+            const file = fileInput.files[0];
+            
             try {
+                // Read and validate JSON file
+                const fileContent = await file.text();
+                const responses = JSON.parse(fileContent);
+                
+                // Submit the responses
                 const response = await fetch(`${API_BASE_URL}/submit`, {
                     method: 'POST',
                     headers: {
@@ -629,7 +550,7 @@
                     body: JSON.stringify({
                         group_name: groupName,
                         task_type: taskType,
-                        model_huggingface_path: modelPath
+                        responses: responses
                     })
                 });
                 
@@ -653,7 +574,7 @@
             } catch (error) {
                 alertDiv.innerHTML = `
                     <div class="alert alert-error">
-                        Error submitting model: ${error.message}
+                        Error: ${error.message}
                     </div>
                 `;
             }
@@ -661,62 +582,84 @@
             alertDiv.style.display = 'block';
         });
         
-        // Check submission status
+        // Function to check submission status
         async function checkSubmissionStatus() {
             const submissionId = document.getElementById('submission-id').value;
-            const statusResult = document.getElementById('status-result');
+            const resultDiv = document.getElementById('submission-status-result');
             
             if (!submissionId) {
-                statusResult.innerHTML = `
+                resultDiv.innerHTML = `
                     <div class="alert alert-error">
                         Please enter a submission ID
                     </div>
                 `;
-                statusResult.style.display = 'block';
+                resultDiv.style.display = 'block';
                 return;
             }
+            
+            resultDiv.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            `;
+            resultDiv.style.display = 'block';
             
             try {
                 const response = await fetch(`${API_BASE_URL}/submission_status/${submissionId}`);
                 const data = await response.json();
                 
-                if (data.status === 'completed') {
-                    statusResult.innerHTML = `
-                        <div class="alert alert-success">
-                            <h3>Submission Completed</h3>
-                            <p><strong>Score:</strong> ${data.score.toFixed(4)}</p>
-                            <p><strong>Submitted:</strong> ${new Date(data.submission_time).toLocaleString()}</p>
-                        </div>
-                    `;
-                } else if (data.status === 'processing') {
-                    statusResult.innerHTML = `
-                        <div class="alert" style="background-color: #e0f7fa; color: #006064; border: 1px solid #b2ebf2;">
-                            <h3>Submission In Progress</h3>
-                            <p>Your submission is currently being evaluated. Please check back later.</p>
-                        </div>
-                    `;
-                } else if (data.status === 'error') {
-                    statusResult.innerHTML = `
-                        <div class="alert alert-error">
-                            <h3>Submission Error</h3>
-                            <p>${data.error}</p>
-                        </div>
-                    `;
+                let statusHtml = '';
+                switch (data.status) {
+                    case 'completed':
+                        statusHtml = `
+                            <div class="alert alert-success">
+                                <h3>Submission Completed</h3>
+                                <p>Score: ${data.score.toFixed(4)}</p>
+                                <p>Submission Time: ${new Date(data.submission_time).toLocaleString()}</p>
+                            </div>
+                        `;
+                        break;
+                    case 'processing':
+                        statusHtml = `
+                            <div class="alert alert-info">
+                                <h3>Processing Submission</h3>
+                                <p>Stage: ${data.details.stage}</p>
+                                <p>Progress: ${data.details.progress}%</p>
+                                <p>Last Updated: ${new Date(data.last_updated).toLocaleString()}</p>
+                            </div>
+                        `;
+                        break;
+                    case 'error':
+                        statusHtml = `
+                            <div class="alert alert-error">
+                                <h3>Error Processing Submission</h3>
+                                <p>${data.error}</p>
+                            </div>
+                        `;
+                        break;
+                    default:
+                        statusHtml = `
+                            <div class="alert alert-info">
+                                <h3>Submission Pending</h3>
+                                <p>Your submission is waiting to be processed.</p>
+                            </div>
+                        `;
                 }
+                
+                resultDiv.innerHTML = statusHtml;
             } catch (error) {
-                statusResult.innerHTML = `
+                resultDiv.innerHTML = `
                     <div class="alert alert-error">
-                        Error checking status: ${error.message}
+                        Error checking submission status: ${error.message}
                     </div>
                 `;
             }
-            
-            statusResult.style.display = 'block';
         }
         
         // Load the leaderboard on page load
         document.addEventListener('DOMContentLoaded', function() {
-            loadLeaderboard('stylistic_personalization');
+            loadLeaderboard('instruction_following');
+            loadThresholds();
         });
     </script>
 </body>
