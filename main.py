@@ -19,10 +19,11 @@ security = HTTPBasic()
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://35.186.120.42:10000", "http://localhost:10000"],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
+    expose_headers=["*"]
 )
 
 # Configure paths
@@ -409,10 +410,11 @@ async def root():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
-        app,
+        "main:app",
         host="0.0.0.0",
         port=10000,
         ssl_keyfile="/home/anikaitsingh/key.pem",
         ssl_certfile="/home/anikaitsingh/cert.pem",
-        reload=True
+        reload=True,
+        ssl_version="TLSv1_2"
     )
