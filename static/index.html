@@ -573,7 +573,10 @@
             `;
             
             try {
-                const response = await fetch(`${API_BASE_URL}/leaderboard/${taskType}`);
+                const response = await fetch(`${API_BASE_URL}/leaderboard/${taskType}`, {
+                    credentials: 'include',
+                    mode: 'cors'
+                });
                 const data = await response.json();
                 
                 if (data.length === 0) {
@@ -625,7 +628,10 @@
         // Load thresholds
         async function loadThresholds() {
             try {
-                const response = await fetch(`${API_BASE_URL}/thresholds`);
+                const response = await fetch(`${API_BASE_URL}/thresholds`, {
+                    credentials: 'include',
+                    mode: 'cors'
+                });
                 const data = await response.json();
                 
                 // Update the threshold displays
@@ -643,7 +649,10 @@
             const guidelinesContent = document.getElementById('guidelines-content');
             
             try {
-                const response = await fetch(`${API_BASE_URL}/guidelines`);
+                const response = await fetch(`${API_BASE_URL}/guidelines`, {
+                    credentials: 'include',
+                    mode: 'cors'
+                });
                 const htmlContent = await response.text();
                 guidelinesContent.innerHTML = htmlContent;
             } catch (error) {
@@ -691,6 +700,8 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
+                    credentials: 'include',
+                    mode: 'cors',
                     body: JSON.stringify({
                         group_name: groupName,
                         task_type: taskType,
@@ -751,7 +762,10 @@
             resultDiv.style.display = 'block';
             
             try {
-                const response = await fetch(`${API_BASE_URL}/submission_status/${submissionId}`);
+                const response = await fetch(`${API_BASE_URL}/submission_status/${submissionId}`, {
+                    credentials: 'include',
+                    mode: 'cors'
+                });
                 const data = await response.json();
                 
                 let statusHtml = '';
