@@ -43,4 +43,7 @@ curl http://127.0.0.1:$PORT
 ```
 
 3. Setup Google Cloud Run
+```bash
+bash /Users/anikaitsingh/Desktop/leaderboard/setup_project.sh
+```
 [Link to Setup](https://github.com/sekR4/FastAPI-on-Google-Cloud-Run)
