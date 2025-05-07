@@ -3,30 +3,40 @@
         "rank": 1,
         "group_name": "Team Alpha",
         "score": 0.8234,
-        "submission_time": "2024-03-15T14:30:00Z"
+        "submission_time": "2024-03-15T14:30:00Z",
+        "implementation_type": "extension",
+        "uses_synthetic_data": true
     },
     {
         "rank": 2,
         "group_name": "NLP Masters",
         "score": 0.7891,
-        "submission_time": "2024-03-15T13:45:00Z"
+        "submission_time": "2024-03-15T13:45:00Z",
+        "implementation_type": "extension",
+        "uses_synthetic_data": false
     },
     {
         "rank": 3,
         "group_name": "AI Pioneers",
         "score": 0.7654,
-        "submission_time": "2024-03-15T12:15:00Z"
+        "submission_time": "2024-03-15T12:15:00Z",
+        "implementation_type": "basic",
+        "uses_synthetic_data": true
     },
     {
         "rank": 4,
         "group_name": "Code Wizards",
         "score": 0.7432,
-        "submission_time": "2024-03-14T16:20:00Z"
+        "submission_time": "2024-03-14T16:20:00Z",
+        "implementation_type": "basic",
+        "uses_synthetic_data": false
     },
     {
         "rank": 5,
         "group_name": "ML Enthusiasts",
         "score": 0.7210,
-        "submission_time": "2024-03-14T11:30:00Z"
+        "submission_time": "2024-03-14T11:30:00Z",
+        "implementation_type": "basic",
+        "uses_synthetic_data": false
     }
 ]

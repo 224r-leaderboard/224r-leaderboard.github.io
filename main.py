@@ -66,6 +66,8 @@ class LeaderboardEntry(BaseModel):
     group_name: str
     score: float
     submission_time: str
+    implementation_type: str
+    uses_synthetic_data: bool
 
 # Authentication function
 def verify_credentials(credentials: HTTPBasicCredentials = Depends(security)):
@@ -152,7 +154,7 @@ def write_json_file(file_path, data):
         )
 
 # Function to update the leaderboard
-def update_leaderboard(group_name, task_type, score):
+def update_leaderboard(group_name, task_type, score, implementation_type, uses_synthetic_data):
     leaderboard_file = get_leaderboard_file(task_type)
     
     try:
@@ -165,7 +167,9 @@ def update_leaderboard(group_name, task_type, score):
     submission = {
         "group_name": group_name,
         "score": score,
-        "submission_time": datetime.now().isoformat()
+        "submission_time": datetime.now().isoformat(),
+        "implementation_type": implementation_type,
+        "uses_synthetic_data": uses_synthetic_data
     }
     
     leaderboard.append(submission)
@@ -268,7 +272,7 @@ def process_submission(submission_id, task_type, group_name, implementation_type
             "stage": "updating_leaderboard",
             "progress": 75
         })
-        update_leaderboard(group_name, task_type, result["score"])
+        update_leaderboard(group_name, task_type, result["score"], implementation_type, uses_synthetic_data)
         
         # Save metadata
         with open(f"{SUBMISSIONS_DIR}/{submission_id}.meta", "w") as f:

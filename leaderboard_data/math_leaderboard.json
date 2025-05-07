@@ -3,30 +3,40 @@
         "rank": 1,
         "group_name": "Math Geniuses",
         "score": 0.8912,
-        "submission_time": "2024-03-15T15:45:00Z"
+        "submission_time": "2024-03-15T15:45:00Z",
+        "implementation_type": "extension",
+        "uses_synthetic_data": true
     },
     {
         "rank": 2,
         "group_name": "Number Ninjas",
         "score": 0.8543,
-        "submission_time": "2024-03-15T14:20:00Z"
+        "submission_time": "2024-03-15T14:20:00Z",
+        "implementation_type": "extension",
+        "uses_synthetic_data": false
     },
     {
         "rank": 3,
         "group_name": "Logic Legends",
         "score": 0.8321,
-        "submission_time": "2024-03-15T10:15:00Z"
+        "submission_time": "2024-03-15T10:15:00Z",
+        "implementation_type": "basic",
+        "uses_synthetic_data": true
     },
     {
         "rank": 4,
         "group_name": "Problem Solvers",
         "score": 0.8012,
-        "submission_time": "2024-03-14T17:30:00Z"
+        "submission_time": "2024-03-14T17:30:00Z",
+        "implementation_type": "basic",
+        "uses_synthetic_data": false
     },
     {
         "rank": 5,
         "group_name": "Math Masters",
         "score": 0.7845,
-        "submission_time": "2024-03-14T13:45:00Z"
+        "submission_time": "2024-03-14T13:45:00Z",
+        "implementation_type": "basic",
+        "uses_synthetic_data": false
     }
 ]

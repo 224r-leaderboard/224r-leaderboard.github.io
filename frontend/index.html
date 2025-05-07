@@ -194,6 +194,42 @@
             color: white;
         }
         
+        .implementation-badge {
+            display: inline-block;
+            padding: 3px 7px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .implementation-basic {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .implementation-extension {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .synthetic-data {
+            display: inline-block;
+            padding: 3px 7px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .synthetic-yes {
+            background-color: #e67e22;
+            color: white;
+        }
+        
+        .synthetic-no {
+            background-color: #95a5a6;
+            color: white;
+        }
+        
         .thresholds {
             display: flex;
             justify-content: space-between;
@@ -287,12 +323,14 @@
                             <th>Rank</th>
                             <th>Group Name</th>
                             <th>Score</th>
+                            <th>Implementation</th>
+                            <th>Synthetic Data</th>
                             <th>Submission Time</th>
                         </tr>
                     </thead>
                     <tbody id="instruction-leaderboard">
                         <tr>
-                            <td colspan="5" class="loading">
+                            <td colspan="6" class="loading">
                                 <div class="spinner"></div>
                             </td>
                         </tr>
@@ -307,12 +345,14 @@
                             <th>Rank</th>
                             <th>Group Name</th>
                             <th>Score</th>
+                            <th>Implementation</th>
+                            <th>Synthetic Data</th>
                             <th>Submission Time</th>
                         </tr>
                     </thead>
                     <tbody id="math-leaderboard">
                         <tr>
-                            <td colspan="5" class="loading">
+                            <td colspan="6" class="loading">
                                 <div class="spinner"></div>
                             </td>
                         </tr>
@@ -439,7 +479,7 @@
             // Show loading spinner
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="5" class="loading">
+                    <td colspan="6" class="loading">
                         <div class="spinner"></div>
                     </td>
                 </tr>
@@ -452,7 +492,7 @@
                 if (data.length === 0) {
                     tableBody.innerHTML = `
                         <tr>
-                            <td colspan="5" style="text-align: center;">No submissions yet</td>
+                            <td colspan="6" style="text-align: center;">No submissions yet</td>
                         </tr>
                     `;
                     return;
@@ -477,6 +517,8 @@
                         <td>${rankDisplay}</td>
                         <td>${entry.group_name}</td>
                         <td>${entry.score.toFixed(4)}</td>
+                        <td><span class="implementation-badge implementation-${entry.implementation_type.toLowerCase()}">${entry.implementation_type}</span></td>
+                        <td><span class="synthetic-data synthetic-${entry.uses_synthetic_data ? 'yes' : 'no'}">${entry.uses_synthetic_data ? 'Yes' : 'No'}</span></td>
                         <td>${new Date(entry.submission_time).toLocaleString()}</td>
                     `;
                     
@@ -485,7 +527,7 @@
             } catch (error) {
                 tableBody.innerHTML = `
                     <tr>
-                        <td colspan="5" style="text-align: center; color: red;">
+                        <td colspan="6" style="text-align: center; color: red;">
                             Error loading leaderboard data: ${error.message}
                         </td>
                     </tr>
