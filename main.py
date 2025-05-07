@@ -409,13 +409,9 @@ async def root():
 # Start the server
 if __name__ == "__main__":
     import uvicorn
-    import ssl
     uvicorn.run(
         "main:app",
-        host="0.0.0.0",
+        host="127.0.0.1",  # Only listen on localhost since Nginx will proxy
         port=10000,
-        ssl_keyfile="/home/anikaitsingh/key.pem",
-        ssl_certfile="/home/anikaitsingh/cert.pem",
-        reload=True,
-        ssl_version=ssl.PROTOCOL_TLSv1_2
+        reload=True
     )
