@@ -22,8 +22,8 @@ app.add_middleware(
     allow_origins=["https://35.186.120.42", "http://localhost:10000", "https://224r-leaderboard.github.io"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["*"],
-    expose_headers=["*"]
+    allow_headers=["Content-Type", "Authorization", "Accept", "Origin", "X-Requested-With"],
+    expose_headers=["Content-Type", "Authorization"]
 )
 
 # Configure paths
