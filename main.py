@@ -409,6 +409,7 @@ async def root():
 # Start the server
 if __name__ == "__main__":
     import uvicorn
+    import ssl
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
@@ -416,5 +417,5 @@ if __name__ == "__main__":
         ssl_keyfile="/home/anikaitsingh/key.pem",
         ssl_certfile="/home/anikaitsingh/cert.pem",
         reload=True,
-        ssl_version="TLSv1_2"
+        ssl_version=ssl.PROTOCOL_TLSv1_2
     )
