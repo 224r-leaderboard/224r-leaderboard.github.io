@@ -520,7 +520,8 @@
     
     <script>
         // API base URL - change this to match your server
-        const API_BASE_URL = 'http://localhost:8050';
+        const port = process.env.PORT || 4000
+        const API_BASE_URL = `http://localhost:${port}`;
         
         // Show/hide sections
         function showSection(sectionName) {
