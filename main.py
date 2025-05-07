@@ -19,7 +19,7 @@ security = HTTPBasic()
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://35.186.120.42:10000", "http://localhost:10000"],
+    allow_origins=["https://35.186.120.42", "http://localhost:10000", "https://224r-leaderboard.github.io"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
