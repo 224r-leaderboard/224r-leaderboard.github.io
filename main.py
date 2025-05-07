@@ -57,6 +57,8 @@ if not os.path.exists(MATH_LEADERBOARD_FILE):
 class SubmissionRequest(BaseModel):
     group_name: str
     task_type: str  # "instruction_following" or "math_reasoning"
+    implementation_type: str  # "basic" or "extension"
+    uses_synthetic_data: bool
     submission_data: dict  # The actual model submission data
 
 class LeaderboardEntry(BaseModel):
@@ -204,6 +206,13 @@ async def submit_model(
             detail="Invalid task type. Must be 'instruction_following' or 'math_reasoning'"
         )
     
+    # Validate implementation type
+    if submission.implementation_type not in ["basic", "extension"]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid implementation type. Must be 'basic' or 'extension'"
+        )
+    
     # Generate a unique ID for this submission
     timestamp = int(time.time())
     submission_id = f"{submission.group_name.replace(' ', '_')}_{submission.task_type}_{timestamp}"
@@ -218,7 +227,9 @@ async def submit_model(
         process_submission,
         submission_id,
         submission.task_type,
-        submission.group_name
+        submission.group_name,
+        submission.implementation_type,
+        submission.uses_synthetic_data
     )
     
     return {
@@ -228,7 +239,7 @@ async def submit_model(
     }
 
 # Function to process submission in background
-def process_submission(submission_id, task_type, group_name):
+def process_submission(submission_id, task_type, group_name, implementation_type, uses_synthetic_data):
     try:
         # Update status to processing
         update_submission_status(submission_id, "processing", {
@@ -264,6 +275,8 @@ def process_submission(submission_id, task_type, group_name):
             json.dump({
                 "group_name": group_name,
                 "task_type": task_type,
+                "implementation_type": implementation_type,
+                "uses_synthetic_data": uses_synthetic_data,
                 "score": result["score"],
                 "submission_time": datetime.now().isoformat()
             }, f, indent=2)

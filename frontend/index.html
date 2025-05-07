@@ -342,6 +342,19 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="implementation-type">Implementation Type</label>
+                        <select id="implementation-type" required>
+                            <option value="basic">Basic Implementation</option>
+                            <option value="extension">Extension</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="display: flex; align-items: center;">
+                        <input type="checkbox" id="synthetic-data" style="width: auto; margin-right: 10px;">
+                        <label for="synthetic-data" style="margin-bottom: 0;">Uses Synthetic Data</label>
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="responses-json">Generated Responses (JSON)</label>
                         <input type="file" id="responses-json" accept=".json" required>
                         <small class="form-text text-muted">Upload a JSON file containing your model's generated responses</small>
@@ -522,6 +535,8 @@
             
             const groupName = document.getElementById('group-name').value;
             const taskType = document.getElementById('task-type').value;
+            const implementationType = document.getElementById('implementation-type').value;
+            const syntheticData = document.getElementById('synthetic-data').checked;
             const fileInput = document.getElementById('responses-json');
             
             if (!fileInput.files.length) {
@@ -550,6 +565,8 @@
                     body: JSON.stringify({
                         group_name: groupName,
                         task_type: taskType,
+                        implementation_type: implementationType,
+                        synthetic_data: syntheticData,
                         responses: responses
                     })
                 });
