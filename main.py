@@ -19,7 +19,7 @@ security = HTTPBasic()
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://35.186.120.42", "http://localhost:10000", "https://224r-leaderboard.github.io"],
+    allow_origins=["*"],  # Allow all origins during development
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization", "Accept", "Origin", "X-Requested-With"],
@@ -411,7 +411,8 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
         "main:app",
-        host="127.0.0.1",  # Only listen on localhost since Nginx will proxy
+        host="0.0.0.0",
+        # host="127.0.0.1",  # Only listen on localhost since Nginx will proxy
         port=10000,
         reload=True
     )
